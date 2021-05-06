@@ -5,8 +5,8 @@ var router = express.Router();
 router.get('/', function(_req, res, _next) {
   res.json({
     title: "Express Server",
-    version: "4.16.1"
-  });
+    version: "v4.16.1"
+  })
 });
 
 module.exports = router;
