@@ -1,0 +1,11 @@
+# exclude IDE settings
+.vscode
+
+# exclude environment variables
+.env
+
+# exclude node libraries
+node_modules
+
+# exclude package-lock
+package-lock.json
