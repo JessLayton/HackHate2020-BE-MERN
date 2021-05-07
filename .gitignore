@@ -7,6 +7,9 @@
 # exclude eslint config file
 .eslintrc.js
 
+# exclude certificate files
+*.pem
+
 # exclude node libraries
 node_modules
 
