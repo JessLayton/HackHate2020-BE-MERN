@@ -4,6 +4,9 @@
 # exclude environment variables
 .env
 
+# exclude eslint config file
+.eslintrc.js
+
 # exclude node libraries
 node_modules
 
