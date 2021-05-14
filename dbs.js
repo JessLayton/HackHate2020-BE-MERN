@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const fileSystem = require('fs');
 
 const { MONGODB_COLLATOR_CONNECTION_STRING } = process.env;
-const credentials = fileSystem.readFile('<path_to_cert_file>', (err) => {
+const credentials = fileSystem.readFile('X509cert.pem', (err) => {
     if (err) {
         console.error(err);
         throw err;
