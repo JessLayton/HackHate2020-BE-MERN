@@ -28,19 +28,4 @@ router.get('/getDDPOs', async (_req, res) => {
   }
 });
 
-router.delete('/deleteDDPO', async (req, res) => {
-  const { id } = req.body;
-  try {
-    await DDPO.deleteOne({ _id: id }, (error, DDPOResponse) => {
-      if (error) {
-        return res.status(500).json({ msg: 'Unexpected error occurred' });
-      }
-      return res.status(200).json({ response: DDPOResponse });
-    });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ msg: 'Unexpected error occurred' });
-  }
-});
-
 module.exports = router;
