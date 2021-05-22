@@ -23,7 +23,7 @@ router.post('/form', async (req, res) => {
     committedBy,
     currentIssues,
     impairments,
-    keyIssueParagraph,
+    keyIssuesParagraph,
     emotionalImpactCaseStudy,
     outcomesCaseStudy,
   } = req.body;
@@ -51,7 +51,7 @@ router.post('/form', async (req, res) => {
       impairments,
       keyIssuesParagraph,
       emotionalImpactCaseStudy,
-      outcomeCaseStudy,
+      outcomesCaseStudy,
     });
     await formData.save();
     return res.status(200).json({
