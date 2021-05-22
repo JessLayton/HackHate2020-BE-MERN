@@ -1,3 +1,15 @@
-node_modules
-package-lock.json
+# exclude IDE settings
+.vscode
+
+# exclude environment variables
 .env
+
+# exclude certificate files
+*.pem
+
+# exclude node libraries
+node_modules
+
+# exclude package-lock
+package-lock.json
+

@@ -19,9 +19,9 @@ router.post('/addDDPO', async (req, res) => {
   }
 });
 
-router.get('/getDDPOs', async (req, res) => {
+router.get('/getDDPOs', async (_req, res) => {
   try {
-    DDPO.find({}, (err, data) => res.status(200).json({ data }));
+    DDPO.find({}, (_err, data) => res.status(200).json({ data }));
   } catch (error) {
     console.error(error);
     return res.status(500).json({ msg: 'Unexpected error occurred' });

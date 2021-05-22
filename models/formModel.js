@@ -8,26 +8,26 @@ const formSchema = new mongoose.Schema({
   year: {
     type: Number, min: 2000, max: 2100,
   },
-  name_ddpo: { 
+  nameDdpo: {
     type: String, minLength: 2, maxLength: 40,
   },
-  boroughs_covered: { type: Array },
+  boroughsCovered: { type: Array },
   referrals: {
     type: Object,
   },
-  reporting_details: {
+  reportingDetails: {
     type: Object,
   },
-  support_provided: {
+  supportProvided: {
     type: Object,
   },
-  cases_not_police_report: {
+  casesNotPoliceReport: {
     type: Object,
   },
   intersectional: {
     type: Object,
-  },  
-  support_age: {
+  },
+  age: {
     type: Object,
   },
   ethnicity: {
@@ -45,25 +45,25 @@ const formSchema = new mongoose.Schema({
   where: {
     type: Object,
   },
-  hate_crime: {
+  hateCrime: {
     type: Object,
   },
-  committed_by: {
+  committedBy: {
     type: Object,
-  },  
-  current_issues: {
+  },
+  currentIssues: {
     type: Object,
   },
   impairments: {
     type: Object,
   },
-  ddpo_short_paragraph: {
+  keyIssuesParagraph: {
     type: String, maxLength: 300,
   },
-  casestudy_impact: {
+  emotionalImpactCaseStudy: {
     type: String, maxLength: 300,
   },
-  casestudy_outcome: {
+  outcomesCaseStudy: {
     type: String, maxLength: 300,
   },
 });

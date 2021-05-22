@@ -14,6 +14,7 @@ module.exports = {
   },
   rules: {
     quotes: ['error', 'single', { allowTemplateLiterals: true }],
+    'linebreak-style': 0,
     'consistent-return': 'off',
     'class-methods-use-this': 'off',
     'no-param-reassign': 'off',

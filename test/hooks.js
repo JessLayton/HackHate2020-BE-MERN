@@ -1,5 +1,5 @@
 require('dotenv').config();
-const DDPOModel = require('../src/models/DDPOModel');
+const DDPOModel = require('../models/DDPOModel');
 
 exports.mochaHooks = {
   async beforeAll() {

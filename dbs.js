@@ -1,8 +1,14 @@
 const mongoose = require('mongoose');
 
+const { MONGODB_COLLATOR_CONNECTION_STRING } = process.env;
+
 const collatorDb = mongoose.createConnection(
-  process.env.MONGODB_COLLATOR_CONNECTION_STRING,
-  { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true },
+  MONGODB_COLLATOR_CONNECTION_STRING,
+  {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+  },
   (err) => {
     if (err) {
       console.error(err);
