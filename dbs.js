@@ -16,7 +16,7 @@ const collatorDb = mongoose.createConnection(
     sslKey: credentials,
     useUnifiedTopology: true,
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
   },
   (err) => {
     if (err) {
@@ -24,7 +24,7 @@ const collatorDb = mongoose.createConnection(
       throw (err);
     }
     console.log('Connected to Collator MongoDB');
-  }
+  },
 );
 
 module.exports = { collatorDb };
