@@ -1,13 +1,12 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const { describe, it } = require('mocha');
-const server = require('../src/index');
+const server = require('../app');
 
 chai.should();
 chai.use(chaiHttp);
 
 describe('/ddpo routes', () => {
-
   it('should POST a DDPO', (done) => {
     chai.request(server)
       .post('/api/addDDPO')
@@ -41,5 +40,4 @@ describe('/ddpo routes', () => {
         }
       });
   });
- 
 });

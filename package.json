@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "serve": "nodemon app",
+    "test": "mocha --require test/hooks.js --exit",
+    "lint": "eslint src --ext .js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -18,6 +20,10 @@
     "morgan": "~1.9.1"
   },
   "devDependencies": {
-    "eslint": "^7.25.0"
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "eslint": "^7.25.0",
+    "mocha": "^8.4.0",
+    "nodemon": "^2.0.7"
   }
 }
