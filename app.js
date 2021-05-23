@@ -12,9 +12,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api', require('./routes/form'));
-app.use('/api', require('./routes/ddpo'));
-app.use('/api/dash', require('./routes/reportingDetails'));
+app.use('/api', require('./routes/switch'));
 
 app.listen(PORT, () => console.log(`Server started on PORT ${PORT}`));
 
