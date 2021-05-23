@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const DDPO = require('../models/DDPOModel');
 
+// TOD: remove async from callback
 router.post('/addDDPO', async (req, res) => {
   const { name } = req.body;
   try {
@@ -19,6 +20,7 @@ router.post('/addDDPO', async (req, res) => {
   }
 });
 
+// TOD: remove async from callback
 router.get('/getDDPOs', async (_req, res) => {
   try {
     DDPO.find({}, (_err, data) => res.status(200).json({ data }));
