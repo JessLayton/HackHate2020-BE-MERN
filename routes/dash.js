@@ -14,11 +14,12 @@ router.get('/reportingDetails', (_req, res) => {
           res.status(200).json(response);
         })
         .catch((err) => {
+          res.status(500).send(err);
           console.error(err);
         });
     })
     .catch((err) => {
-      console.error(err);
+      res.status(500).send(err);
     });
 });
 
@@ -31,10 +32,12 @@ router.get('/reasons', (_req, res) => {
           res.status(200).json(response);
         })
         .catch((err) => {
+          res.status(500).send(err);
           console.error(err);
         });
     })
     .catch((err) => {
+      res.status(500).send(err);
       console.error(err);
     });
 });
