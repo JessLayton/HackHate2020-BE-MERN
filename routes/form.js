@@ -2,7 +2,7 @@
 const router = require('express').Router();
 const Form = require('../models/formModel');
 
-router.post('/form', async (req, res) => {
+router.post(async (req, res) => {
   const {
     quarter,
     year,
@@ -11,7 +11,7 @@ router.post('/form', async (req, res) => {
     referrals,
     reportingDetails,
     supportProvided,
-    unreportedCases,
+    casesNotPoliceReport: unreportedCases,
     intersectional,
     age,
     ethnicity,

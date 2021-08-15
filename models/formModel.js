@@ -6,7 +6,7 @@ const formSchema = new mongoose.Schema({
     type: Number, required: true, min: 1, max: 4,
   },
   year: {
-    type: Number, min: 2000, max: 2100,
+    type: Number, required: true, min: 2000, max: 2100,
   },
   nameDdpo: {
     type: String, minLength: 2, maxLength: 40,
