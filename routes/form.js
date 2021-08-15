@@ -2,7 +2,7 @@
 const router = require('express').Router();
 const Form = require('../models/formModel');
 
-router.post(async (req, res) => {
+router.post('/create', async (req, res) => {
   const {
     quarter,
     year,
