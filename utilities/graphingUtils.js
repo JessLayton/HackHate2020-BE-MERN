@@ -1,53 +1,5 @@
 const _ = require('lodash');
 
-// const data = [
-//   {
-//     quarter: 1,
-//     year: 2020,
-//     value: {
-//       test: 2,
-//       another: [2, 3, 4],
-//     },
-//     another: [2, 3, 4],
-//   },
-//   {
-//     quarter: 1,
-//     year: 2019,
-//     value: {
-//       test: 2,
-//       another: [2, 3, 4],
-//     },
-//     another: [2, 3, 4],
-//   },
-//   {
-//     quarter: 1,
-//     year: 2019,
-//     value: {
-//       test: 2,
-//       another: [2, 3, 4],
-//     },
-//     another: [2, 3, 4],
-//   },
-//   {
-//     quarter: 2,
-//     year: 2019,
-//     value: {
-//       test: 2,
-//       another: [2, 3, 4],
-//     },
-//     another: [2, 3, 4],
-//   },
-//   {
-//     quarter: 3,
-//     year: 2018,
-//     value: {
-//       test: 2,
-//       another: [2, 3, 4],
-//     },
-//     another: [2, 3, 4],
-//   },
-// ];
-
 const sumObjects = (obj1, obj2) => (
   _.mergeWith(obj1, obj2, (objValue, srcValue) => {
     if (_.isObject(objValue)) {
@@ -74,4 +26,4 @@ const sortAndGroupByQuarter = (data) => {
   return result;
 };
 
-module.exports = sortAndGroupByQuarter;
+module.exports = { sortAndGroupByQuarter, sumObjects };

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const axios = require('axios');
 
-const sortAndGroupByQuarter = require('../utilities/sortAndGroupByQuarter');
+const { sortAndGroupByQuarter } = require('../utilities/graphingUtils');
 const Form = require('../models/formModel');
 
 const { PYTHON_URL } = process.env;
