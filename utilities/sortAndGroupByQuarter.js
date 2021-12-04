@@ -63,7 +63,9 @@ result = _.sortBy(result, ['0.1', '0.0']); // 0.1 is the year and 0.0 is the qua
 result = result.map(([[quarter, year], values]) => {
   console.log(values);
   const summedTotals = values.reduce(
-    (previous, { quarter: _quarter, year: _year, ...rest }) => (
+    (previous, {
+      quarter: _quarter, year: _year, _id, ...rest
+    }) => (
       sumObjects(rest, previous)
     ), {},
   );
