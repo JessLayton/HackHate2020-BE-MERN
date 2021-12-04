@@ -1,24 +1,24 @@
 const router = require('express').Router();
-const axios = require('axios');
 
 const { sortAndGroupByQuarter } = require('../utilities/graphingUtils');
 const Form = require('../models/formModel');
 
-const { PYTHON_URL } = process.env;
-
 router.get('/reportingDetails', (_req, res) => {
   Form.find({}, ['quarter', 'year', 'reportingDetails'])
     .then((result) => {
-      console.log(result);
-      axios.post(`${PYTHON_URL}/reportingNumbers`, result)
-        .then((response) => {
-          // extract data from response object
-          res.status(200).json(response.data);
-        })
-        .catch((err) => {
-          res.status(500).send(err);
-          console.error(err);
-        });
+      const flattenedResults = result.map(
+        ({ quarter, year, reportingDetails: { reported, supported } }) => (
+          {
+            quarter,
+            year,
+            reported,
+            supported,
+            totalHandled: reported + supported,
+          }
+        ),
+      );
+      const sortedAndGrouped = sortAndGroupByQuarter(flattenedResults);
+      res.status(200).json(sortedAndGrouped);
     })
     .catch((err) => {
       res.status(500).send(err);
