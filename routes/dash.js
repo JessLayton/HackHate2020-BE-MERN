@@ -28,7 +28,14 @@ router.get('/reportingDetails', (_req, res) => {
 router.get('/reasons', (_req, res) => {
   Form.find({}, ['unreportedCases', 'quarter', 'year'])
     .then((result) => {
-      const sortedAndGrouped = sortAndGroupByQuarter(result.map(({ _doc }) => _doc));
+      const flattenedResults = result.map(({ quarter, year, unreportedCases }) => (
+        {
+          quarter,
+          year,
+          ...unreportedCases,
+        }
+      ));
+      const sortedAndGrouped = sortAndGroupByQuarter(flattenedResults);
       res.status(200).json(sortedAndGrouped);
     })
     .catch((err) => {
