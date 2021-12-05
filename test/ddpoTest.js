@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 describe('/ddpo routes', () => {
   it('should POST a DDPO', (done) => {
     chai.request(server)
-      .post('/api/addDDPO')
+      .post('/api/ddpo/addDDPO')
       .send(
         {
           name: 'TestingDDPO',
@@ -28,7 +28,7 @@ describe('/ddpo routes', () => {
 
   it('should GET all the DDPOs', (done) => {
     chai.request(server)
-      .get('/api/getDDPOs')
+      .get('/api/ddpo/getDDPOs')
       .end((err, res) => {
         if (err) {
           done(err);

@@ -11,7 +11,7 @@ router.post('/create', async (req, res) => {
     referrals,
     reportingDetails,
     supportProvided,
-    casesNotPoliceReport: unreportedCases,
+    unreportedCases,
     intersectional,
     age,
     ethnicity,
