@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "nodemon app",
-    "test": "mocha --require test/hooks.js --exit",
-    "lint": "eslint src --ext .js"
+    "test": "mocha --require test/hooks.js --recursive --exit",
+    "lint": "eslint . --ext .js --fix"
   },
   "dependencies": {
     "axios": "^0.21.1",
