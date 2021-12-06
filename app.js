@@ -2,18 +2,17 @@ const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
 
-require('dotenv').config();
-
 const app = express();
-const { PORT } = process.env;
+const config = require('./config');
+
+const { PORT } = config;
 
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api', require('./routes/form'));
-app.use('/api', require('./routes/ddpo'));
+app.use('/api', require('./routes/switch'));
 
 app.listen(PORT, () => console.log(`Server started on PORT ${PORT}`));
 

@@ -6,56 +6,70 @@ const formSchema = new mongoose.Schema({
     type: Number, required: true, min: 1, max: 4,
   },
   year: {
-    type: Number, min: 2000, max: 2100,
+    type: Number, required: true, min: 2000, max: 2100,
   },
   nameDdpo: {
-    type: String, minLength: 2, maxLength: 40,
+    type: String, required: true, minLength: 2, maxLength: 40,
   },
-  boroughsCovered: { type: Array },
+  boroughsCovered: { type: Array, required: true },
   referrals: {
-    type: Object,
+    type: Object, required: true,
   },
   reportingDetails: {
     type: Object,
+    required: true,
   },
   supportProvided: {
     type: Object,
+    required: true,
   },
-  casesNotPoliceReport: {
+  unreportedCases: {
     type: Object,
+    required: true,
   },
   intersectional: {
     type: Object,
+    required: true,
   },
   age: {
     type: Object,
+    required: true,
   },
   ethnicity: {
     type: Object,
+    required: true,
   },
   gender: {
     type: Object,
+    required: true,
   },
   sex: {
     type: Object,
+    required: true,
   },
   orientation: {
     type: Object,
+    required: true,
   },
   where: {
     type: Object,
+    required: true,
   },
   hateCrime: {
     type: Object,
+    required: true,
   },
   committedBy: {
     type: Object,
+    required: true,
   },
   currentIssues: {
     type: Object,
+    required: true,
   },
   impairments: {
     type: Object,
+    required: true,
   },
   keyIssuesParagraph: {
     type: String, maxLength: 300,

@@ -2,6 +2,7 @@
 .vscode
 
 # exclude environment variables
+environments.js
 .env
 
 # exclude certificate files
@@ -13,3 +14,5 @@ node_modules
 # exclude package-lock
 package-lock.json
 
+# exclude nyc output
+.nyc_output

@@ -3,25 +3,29 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "serve": "nodemon app",
-    "test": "mocha --require test/hooks.js --exit",
-    "lint": "eslint src --ext .js"
+    "serve:dev": "cross-env NODE_ENV=development nodemon app",
+    "serve:prod": "cross-env NODE_ENV=production nodemon app",
+    "test": "cross-env NODE_ENV=test nyc mocha --require test/hooks.js --recursive --exit",
+    "lint": "eslint . --ext .js --fix"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
-    "dotenv": "^9.0.0",
     "express": "~4.16.1",
+    "lodash": "^4.17.21",
     "mongoose": "^5.12.7",
     "morgan": "~1.9.1"
   },
   "devDependencies": {
     "chai": "^4.3.4",
     "chai-http": "^4.3.0",
+    "cross-env": "^7.0.3",
     "eslint": "^7.25.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.3",
     "mocha": "^8.4.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "nyc": "^15.1.0"
   }
 }
