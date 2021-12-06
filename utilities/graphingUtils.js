@@ -21,9 +21,36 @@ const sortAndGroupByQuarter = (data) => {
         sumObjects(rest, previous)
       ), {},
     );
-    return { [`Q${quarter} ${year}`]: summedTotals };
+    return {
+      period: `Q${quarter} ${year}`,
+      values: summedTotals,
+    };
   });
   return result;
 };
 
-module.exports = { sortAndGroupByQuarter, sumObjects };
+const formatForGraph = (sortedAndGroupedData) => {
+  const xAxis = [];
+  const dataObject = {};
+  sortedAndGroupedData.forEach(({ period, values }, index) => {
+    xAxis.push(period);
+    Object.entries(values).forEach(([key, value]) => {
+      if (!dataObject[key]) {
+        dataObject[key] = Array(sortedAndGroupedData.length).fill(0);
+      }
+      dataObject[key].splice(index, 1, value);
+    });
+  });
+  const dataArray = Object.entries(dataObject).map(([key, value]) => (
+    {
+      name: key,
+      data: value,
+    }
+  ));
+  return {
+    xAxis,
+    dataArray,
+  };
+};
+
+module.exports = { sortAndGroupByQuarter, sumObjects, formatForGraph };
