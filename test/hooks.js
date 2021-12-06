@@ -1,4 +1,3 @@
-require('dotenv').config();
 const DDPOModel = require('../models/DDPOModel');
 
 exports.mochaHooks = {
