@@ -16,7 +16,25 @@ describe('/dash routes', () => {
         } else {
           console.log('**************', res.body);
           res.should.have.status(200);
-          res.body.should.deep.equal([{ 'Q1 2020': { reported: 12, supported: 5, totalHandled: 17 } }]);
+          res.body.should.deep.equal(
+            {
+              xAxis: ['Q1 2020'],
+              dataArray: [
+                {
+                  name: 'reported',
+                  data: [12],
+                },
+                {
+                  name: 'supported',
+                  data: [5],
+                },
+                {
+                  name: 'totalHandled',
+                  data: [17],
+                },
+              ],
+            },
+          );
           done();
         }
       });
