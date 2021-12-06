@@ -55,28 +55,32 @@ const unsortedYearAndQuarterData = [
 
 const sortedYearAndQuarterData = [
   {
-    'Q1 2019': {
+    period: 'Q1 2019',
+    values: {
       reported: 56,
       supported: 12,
       totalHandled: 68,
     },
   },
   {
-    'Q2 2019': {
+    period: 'Q2 2019',
+    values: {
       reported: 56,
       supported: 12,
       totalHandled: 68,
     },
   },
   {
-    'Q3 2020': {
+    period: 'Q3 2020',
+    values: {
       reported: 13,
       supported: 4,
       totalHandled: 17,
     },
   },
   {
-    'Q2 2021': {
+    period: 'Q2 2021',
+    values: {
       reported: 10,
       supported: 12,
       totalHandled: 22,
