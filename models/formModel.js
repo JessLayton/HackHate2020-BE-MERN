@@ -72,13 +72,13 @@ const formSchema = new mongoose.Schema({
     required: true,
   },
   keyIssuesParagraph: {
-    type: String, maxLength: 300, required: true,
+    type: String, maxLength: 300,
   },
   emotionalImpactCaseStudy: {
-    type: String, maxLength: 300, required: true,
+    type: String, maxLength: 300,
   },
   outcomesCaseStudy: {
-    type: String, maxLength: 300, required: true,
+    type: String, maxLength: 300,
   },
 });
 
