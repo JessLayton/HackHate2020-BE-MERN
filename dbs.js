@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+const config = require('./config');
 
-const { MONGODB_COLLATOR_CONNECTION_STRING } = process.env;
+const { DB_CONNECTION_STRING } = config;
 
 const collatorDb = mongoose.createConnection(
-  MONGODB_COLLATOR_CONNECTION_STRING,
+  DB_CONNECTION_STRING,
   {
     useUnifiedTopology: true,
     useNewUrlParser: true,
