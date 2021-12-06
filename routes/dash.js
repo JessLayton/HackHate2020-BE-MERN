@@ -11,9 +11,9 @@ router.get('/reportingDetails', (_req, res) => {
           {
             quarter,
             year,
-            reported,
-            supported,
-            totalHandled: reported + supported,
+            'Cases reported to police': reported,
+            'Cases supported but not reported to police': supported,
+            'Total cases handled': reported + supported,
           }
         ),
       );
@@ -29,11 +29,29 @@ router.get('/reportingDetails', (_req, res) => {
 router.get('/reasons', (_req, res) => {
   Form.find({}, ['unreportedCases', 'quarter', 'year'])
     .then((result) => {
-      const flattenedResults = result.map(({ quarter, year, unreportedCases }) => (
+      const flattenedResults = result.map(({
+        quarter, year, unreportedCases: {
+          lackEvidence,
+          notTrustPolice,
+          policeNotBelieve,
+          afraid,
+          abuseStop,
+          talk,
+          clientOther,
+          other,
+        },
+      }) => (
         {
           quarter,
           year,
-          ...unreportedCases,
+          'Not enough evidence': lackEvidence,
+          'Don\'t trust the Police': notTrustPolice,
+          'Police didn\'t believe me before': policeNotBelieve,
+          'Afraid to go to the Authorities': afraid,
+          'Just want the abuse to stop': abuseStop,
+          'Need someone to talk to in confidence': talk,
+          'Other reasons': clientOther,
+          'Other/Unknown': other,
         }
       ));
       const sortedAndGrouped = sortAndGroupByQuarter(flattenedResults);

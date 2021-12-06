@@ -20,15 +20,15 @@ describe('/dash routes', () => {
             xAxis: ['Q1 2020', 'Q3 2021'],
             dataArray: [
               {
-                name: 'reported',
+                name: 'Cases reported to police',
                 data: [20, 21],
               },
               {
-                name: 'supported',
+                name: 'Cases supported but not reported to police',
                 data: [7, 8],
               },
               {
-                name: 'totalHandled',
+                name: 'Total cases handled',
                 data: [27, 29],
               },
             ],
@@ -50,14 +50,14 @@ describe('/dash routes', () => {
           res.body.should.deep.equal({
             xAxis: ['Q1 2020', 'Q3 2021'],
             dataArray: [
-              { name: 'lackEvidence', data: [12, 12] },
-              { name: 'notTrustPolice', data: [14, 0] },
-              { name: 'policeNotBelieve', data: [9, 7] },
-              { name: 'afraid', data: [15, 2] },
-              { name: 'abuseStop', data: [4, 7] },
-              { name: 'talk', data: [25, 21] },
-              { name: 'clientOther', data: [2, 0] },
-              { name: 'other', data: [12, 14] },
+              { name: 'Not enough evidence', data: [12, 12] },
+              { name: 'Don\'t trust the Police', data: [14, 0] },
+              { name: 'Police didn\'t believe me before', data: [9, 7] },
+              { name: 'Afraid to go to the Authorities', data: [15, 2] },
+              { name: 'Just want the abuse to stop', data: [4, 7] },
+              { name: 'Need someone to talk to in confidence', data: [25, 21] },
+              { name: 'Other reasons', data: [2, 0] },
+              { name: 'Other/Unknown', data: [12, 14] },
             ],
           });
           done();
