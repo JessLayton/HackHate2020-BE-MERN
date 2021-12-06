@@ -14,23 +14,22 @@ describe('/dash routes', () => {
         if (err) {
           done(err);
         } else {
-          console.log('**************', res.body);
           res.should.have.status(200);
           res.body.should.deep.equal(
             {
-              xAxis: ['Q1 2020'],
+              xAxis: ['Q1 2020', 'Q3 2021'],
               dataArray: [
                 {
                   name: 'reported',
-                  data: [12],
+                  data: [20, 21],
                 },
                 {
                   name: 'supported',
-                  data: [5],
+                  data: [7, 8],
                 },
                 {
                   name: 'totalHandled',
-                  data: [17],
+                  data: [27, 29],
                 },
               ],
             },
