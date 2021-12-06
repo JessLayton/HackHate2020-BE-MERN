@@ -5,7 +5,7 @@
   "scripts": {
     "serve:dev": "cross-env NODE_ENV=development nodemon app",
     "serve:prod": "cross-env NODE_ENV=production nodemon app",
-    "test": "cross-env NODE_ENV=test mocha --require test/hooks.js --recursive --exit",
+    "test": "cross-env NODE_ENV=test nyc mocha --require test/hooks.js --recursive --exit",
     "lint": "eslint . --ext .js --fix"
   },
   "dependencies": {
@@ -25,6 +25,7 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.3",
     "mocha": "^8.4.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "nyc": "^15.1.0"
   }
 }
