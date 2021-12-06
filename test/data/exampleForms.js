@@ -7,7 +7,10 @@ const validForm = {
     'testBorough2',
   ],
   referrals: {},
-  reportingDetails: {},
+  reportingDetails: {
+    reported: 12,
+    supported: 5,
+  },
   supportProvided: {},
   unreportedCases: {},
   intersectional: {},
