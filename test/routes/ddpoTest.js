@@ -38,7 +38,6 @@ describe('/ddpo routes', () => {
         if (err) {
           done(err);
         } else {
-          console.log(res);
           res.should.have.status(400);
           res.text.should.equal('{"msg":"DDPOs must have a name between 2 and 40 characters"}');
           done();

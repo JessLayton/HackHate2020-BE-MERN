@@ -20,6 +20,13 @@ describe('sumObjects function', () => {
     const summedObjects = sumObjects({ test1: 3, test2: 12 }, { test1: 6 });
     assert.deepStrictEqual(summedObjects, { test1: 9, test2: 12 });
   });
+
+  it('should sum the values two nested objects', () => {
+    const summedObjects = sumObjects(
+      { test1: { test3: 1, test4: 5 }, test2: 8 }, { test1: { test3: 2, test4: 1 }, test2: 12 },
+    );
+    assert.deepStrictEqual(summedObjects, { test1: { test3: 3, test4: 6 }, test2: 20 });
+  });
 });
 
 describe('sortAndGroupByQuarter function', () => {
