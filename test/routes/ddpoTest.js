@@ -26,6 +26,26 @@ describe('/ddpo routes', () => {
       });
   });
 
+  it('should return a 400 error and not POST a DDPO if the DDPO is invalid', (done) => {
+    chai.request(server)
+      .post('/api/ddpo/addDDPO')
+      .send(
+        {
+          name: '',
+        },
+      )
+      .end((err, res) => {
+        if (err) {
+          done(err);
+        } else {
+          console.log(res);
+          res.should.have.status(400);
+          res.text.should.equal('{"msg":"DDPOs must have a name between 2 and 40 characters"}');
+          done();
+        }
+      });
+  });
+
   it('should GET all the DDPOs', (done) => {
     chai.request(server)
       .get('/api/ddpo/getDDPOs')
