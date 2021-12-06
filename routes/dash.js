@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { sortAndGroupByQuarter } = require('../utilities/graphingUtils');
+const { sortAndGroupByQuarter, formatForGraph } = require('../utilities/graphingUtils');
 const Form = require('../models/formModel');
 
 router.get('/reportingDetails', (_req, res) => {
@@ -18,7 +18,8 @@ router.get('/reportingDetails', (_req, res) => {
         ),
       );
       const sortedAndGrouped = sortAndGroupByQuarter(flattenedResults);
-      res.status(200).json(sortedAndGrouped);
+      const formattedForGraph = formatForGraph(sortedAndGrouped);
+      res.status(200).json(formattedForGraph);
     })
     .catch((err) => {
       res.status(500).send(err);
@@ -36,7 +37,8 @@ router.get('/reasons', (_req, res) => {
         }
       ));
       const sortedAndGrouped = sortAndGroupByQuarter(flattenedResults);
-      res.status(200).json(sortedAndGrouped);
+      const formattedForGraph = formatForGraph(sortedAndGrouped);
+      res.status(200).json(formattedForGraph);
     })
     .catch((err) => {
       res.status(500).send(err);
