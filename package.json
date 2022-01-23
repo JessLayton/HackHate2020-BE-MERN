@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "serve:dev": "cross-env NODE_ENV=development nodemon app",
-    "serve:prod": "cross-env NODE_ENV=production nodemon app",
     "test": "cross-env NODE_ENV=test nyc mocha --require test/hooks.js --recursive --exit",
     "lint": "eslint . --ext .js --fix"
   },
