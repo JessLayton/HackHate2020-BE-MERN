@@ -3,10 +3,13 @@ FROM node:16
 # Create app directory
 WORKDIR /app
 
-# Bundle app source
-COPY . .
+# Install app dependencies
+COPY package*.json ./
 
 # Install app dependencies
 RUN npm ci --silent
+
+# Bundle app source
+COPY . .
 
 CMD [ "node", "app.js" ]
