@@ -10,6 +10,6 @@ COPY . .
 RUN npm ci --silent
 
 # Set node env
-RUN export NODE_ENV='production'
+RUN export NODE_ENV="production"
 
 CMD [ "node", "app.js" ]
