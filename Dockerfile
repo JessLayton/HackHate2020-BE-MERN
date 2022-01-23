@@ -11,4 +11,7 @@ RUN npm ci --silent
 # Bundle app source
 COPY . .
 
+# Set node env
+RUN export NODE_ENV='production'
+
 CMD [ "node", "app.js" ]
