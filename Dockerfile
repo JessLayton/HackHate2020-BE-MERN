@@ -7,7 +7,7 @@ WORKDIR /app
 COPY . .
 
 # Install app dependencies
-RUN npm ci --verbose
+RUN npm ci --silent
 
 # Set node env
 RUN export NODE_ENV='production'
