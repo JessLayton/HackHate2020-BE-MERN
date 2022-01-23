@@ -3,16 +3,12 @@
 
 # exclude environment variables
 environments.js
-.env
 
 # exclude certificate files
 *.pem
 
 # exclude node libraries
 node_modules
-
-# exclude package-lock
-package-lock.json
 
 # exclude nyc output
 .nyc_output
