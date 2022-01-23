@@ -9,7 +9,4 @@ COPY . .
 # Install app dependencies
 RUN npm ci --silent
 
-# Set node env
-ENV NODE_ENV production
-
 CMD [ "node", "app.js" ]
