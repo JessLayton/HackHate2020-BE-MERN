@@ -72,13 +72,25 @@ const formSchema = new mongoose.Schema({
     required: true,
   },
   keyIssuesParagraph: {
-    type: String, maxLength: 300,
+    type: String,
+    validate: {
+      validator: (emotionalImpactCaseStudy) => emotionalImpactCaseStudy.split(' ').length <= 300,
+      message: () => 'Key issues paragraph must be 300 words or less',
+    },
   },
   emotionalImpactCaseStudy: {
-    type: String, maxLength: 300,
+    type: String,
+    validate: {
+      validator: (emotionalImpactCaseStudy) => emotionalImpactCaseStudy.split(' ').length <= 300,
+      message: () => 'Emotional impact case study must be 300 words or less',
+    },
   },
   outcomesCaseStudy: {
-    type: String, maxLength: 300,
+    type: String,
+    validate: {
+      validator: (outcomesCaseStudy) => outcomesCaseStudy.split(' ').length <= 300,
+      message: () => 'Outcomes case study must be 300 words or less',
+    },
   },
 });
 
