@@ -9,7 +9,6 @@
     "lint": "eslint . --ext .js --fix"
   },
   "dependencies": {
-    "axios": "^0.21.1",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "~4.16.1",

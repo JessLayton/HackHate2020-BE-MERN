@@ -19,6 +19,10 @@ const formSchema = new mongoose.Schema({
     type: Object,
     required: true,
   },
+  ongoingDetails: {
+    type: Object,
+    required: true,
+  },
   supportProvided: {
     type: Object,
     required: true,
@@ -40,10 +44,6 @@ const formSchema = new mongoose.Schema({
     required: true,
   },
   gender: {
-    type: Object,
-    required: true,
-  },
-  sex: {
     type: Object,
     required: true,
   },

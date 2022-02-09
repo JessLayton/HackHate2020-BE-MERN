@@ -7,6 +7,9 @@ const validForm = {
     'testBorough2',
   ],
   referrals: {},
+  ongoingDetails: {
+    ongoing: 43,
+  },
   reportingDetails: {
     reported: 12,
     supported: 5,
@@ -26,7 +29,6 @@ const validForm = {
   age: {},
   ethnicity: {},
   gender: {},
-  sex: {},
   orientation: {},
   where: {},
   hateCrime: {},
@@ -46,6 +48,9 @@ const validFormSamePeriod = {
     'testBorough1',
   ],
   referrals: {},
+  ongoingDetails: {
+    ongoing: 43,
+  },
   reportingDetails: {
     reported: 8,
     supported: 2,
@@ -65,7 +70,6 @@ const validFormSamePeriod = {
   age: {},
   ethnicity: {},
   gender: {},
-  sex: {},
   orientation: {},
   where: {},
   hateCrime: {},
@@ -85,6 +89,9 @@ const validFormDifferentPeriod = {
     'testBorough2',
   ],
   referrals: {},
+  ongoingDetails: {
+    ongoing: 43,
+  },
   reportingDetails: {
     reported: 21,
     supported: 8,
@@ -104,7 +111,6 @@ const validFormDifferentPeriod = {
   age: {},
   ethnicity: {},
   gender: {},
-  sex: {},
   orientation: {},
   where: {},
   hateCrime: {},
