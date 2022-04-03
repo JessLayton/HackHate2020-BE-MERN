@@ -29,11 +29,11 @@ const sortAndGroupByQuarter = (data) => {
   return result;
 };
 
-const formatForGraph = (sortedAndGroupedData) => {
+const formatForGraph = (sortedAndGroupedData, stacking = undefined) => {
   const xAxis = [];
   const dataObject = {};
-  sortedAndGroupedData.forEach(({ period, values }, index) => {
-    xAxis.push(period);
+  sortedAndGroupedData.forEach(({ group, values }, index) => {
+    xAxis.push(group);
     Object.entries(values).forEach(([key, value]) => {
       if (!dataObject[key]) {
         dataObject[key] = Array(sortedAndGroupedData.length).fill(0);
@@ -45,6 +45,7 @@ const formatForGraph = (sortedAndGroupedData) => {
     {
       name: key,
       data: value,
+      stacking,
     }
   ));
   return {
@@ -53,4 +54,26 @@ const formatForGraph = (sortedAndGroupedData) => {
   };
 };
 
-module.exports = { sortAndGroupByQuarter, sumObjects, formatForGraph };
+const sumAllForGraph = (flattenedArray, name) => {
+  const summed = flattenedArray.reduce(sumObjects);
+  const xAxis = [];
+  const data = Object.entries(summed).map(([key, value]) => {
+    xAxis.push(key);
+    return ({
+      name: key,
+      y: value,
+    });
+  });
+  return {
+    xAxis,
+    dataArray: [{ data, name }],
+  };
+};
+
+const stackQuarters = (dataArray) => {
+  const summedData = dataArray.reduce(sumObj)
+};
+
+module.exports = {
+  sortAndGroupByQuarter, sumObjects, formatForGraph, sumAllForGraph, stackQuarters,
+};
