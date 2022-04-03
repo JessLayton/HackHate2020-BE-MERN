@@ -10,6 +10,10 @@ const validForm = {
   ongoingDetails: {
     ongoing: 43,
   },
+  timeSpentNumerical: 0,
+  timeSpentInfo: 'lots of time',
+  isWaitingList: 'yes',
+  waitingListCount: 5,
   reportingDetails: {
     reported: 12,
     supported: 5,
@@ -51,6 +55,10 @@ const validFormSamePeriod = {
   ongoingDetails: {
     ongoing: 43,
   },
+  timeSpentNumerical: 0,
+  timeSpentInfo: 'lots of time',
+  isWaitingList: 'yes',
+  waitingListCount: 5,
   reportingDetails: {
     reported: 8,
     supported: 2,
@@ -92,6 +100,11 @@ const validFormDifferentPeriod = {
   ongoingDetails: {
     ongoing: 43,
   },
+  typeOfTimeDataAvailable: [],
+  timeSpentNumerical: 0,
+  timeSpentInfo: 'lots of time',
+  isWaitingList: 'yes',
+  waitingListCount: 5,
   reportingDetails: {
     reported: 21,
     supported: 8,

@@ -23,6 +23,23 @@ const formSchema = new mongoose.Schema({
     type: Object,
     required: true,
   },
+  typeOfTimeDataAvailable: { type: Array, required: true },
+  timeSpentNumerical: {
+    type: Number,
+    required: true,
+  },
+  timeSpentInfo: {
+    type: String,
+    required: true,
+  },
+  isWaitingList: {
+    type: String,
+    required: true,
+  },
+  waitingListCount: {
+    type: Number,
+    required: true,
+  },
   supportProvided: {
     type: Object,
     required: true,
