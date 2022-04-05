@@ -1,7 +1,7 @@
 const _ = require('lodash');
 
 const sumObjects = (obj1, obj2) => (
-  _.mergeWith(obj1, obj2, (objValue = 0, srcValue = 0) => {
+  _.mergeWith({}, obj1, obj2, (objValue = 0, srcValue = 0) => {
     if (_.isObject(objValue)) {
       return sumObjects(objValue, srcValue);
     }
@@ -22,7 +22,7 @@ const sortAndGroupByQuarter = (data) => {
       ), {},
     );
     return {
-      period: `Q${quarter} ${year}`,
+      group: `Q${quarter} ${year}`,
       values: summedTotals,
     };
   });
@@ -71,7 +71,26 @@ const sumAllForGraph = (flattenedArray, name) => {
 };
 
 const stackQuarters = (dataArray) => {
-  const summedData = dataArray.reduce(sumObj)
+  const groupedData = {};
+  dataArray.forEach(({
+    year, quarter, id: _id, ...rest
+  }) => {
+    const period = `Q${quarter} ${year}`;
+    Object.entries(rest).forEach(([key, value]) => {
+      if (!groupedData[key]) {
+        groupedData[key] = {};
+      }
+      if (!groupedData[key][period]) {
+        groupedData[key][period] = 0;
+      }
+      groupedData[key][period] += value;
+    });
+  });
+  const formattedData = Object.entries(groupedData).map(([key, values]) => ({
+    group: key,
+    values,
+  }));
+  return formattedData;
 };
 
 module.exports = {

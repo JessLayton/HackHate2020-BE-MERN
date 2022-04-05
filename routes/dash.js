@@ -1,6 +1,8 @@
 const router = require('express').Router();
 
-const { sortAndGroupByQuarter, formatForGraph, sumAllForGraph } = require('../utilities/graphingUtils');
+const {
+  sortAndGroupByQuarter, formatForGraph, sumAllForGraph, stackQuarters,
+} = require('../utilities/graphingUtils');
 const Form = require('../models/formModel');
 
 router.get('/reportingDetails', (_req, res) => {
@@ -55,7 +57,7 @@ router.get('/reasons', (_req, res) => {
         }
       ));
       const sortedAndGrouped = sortAndGroupByQuarter(flattenedResults);
-      const formattedForGraph = formatForGraph(sortedAndGrouped, 'normal');
+      const formattedForGraph = formatForGraph(sortedAndGrouped);
       res.status(200).json(formattedForGraph);
     })
     .catch((err) => {
@@ -77,9 +79,7 @@ router.get('/referralsOverTime', (_req, res) => {
         ),
       );
       const sortedAndGrouped = sortAndGroupByQuarter(flattenedResults);
-      console.log(sortedAndGrouped);
       const formattedForGraph = formatForGraph(sortedAndGrouped);
-      console.log(formattedForGraph);
       res.status(200).json(formattedForGraph);
     })
     .catch((err) => {
@@ -105,7 +105,6 @@ router.get('/allReferrals', (_req, res) => {
         ),
       );
       const summed = sumAllForGraph(flattenedResults);
-      console.log(summed);
       res.status(200).json(summed);
     })
     .catch((err) => {
@@ -129,13 +128,15 @@ router.get('/allReferralsStacked', (_req, res) => {
             'Number of referrals via police / authorities': fromAuthorities,
             'Number of referrals from other organisations': otherOrgs,
             Other: total - (self + fromAuthorities + otherOrgs),
-            quarter: `Q${quarter} ${year}`,
+            quarter,
+            year,
           }
         ),
       );
-      const summed = sumAllForGraph(flattenedResults);
-      console.log(summed);
-      res.status(200).json(summed);
+      const stacked = stackQuarters(flattenedResults);
+      const formattedForGraph = formatForGraph(stacked, 'normal');
+
+      res.status(200).json(formattedForGraph);
     })
     .catch((err) => {
       res.status(500).send(err);
@@ -163,7 +164,6 @@ router.get('/intersectionalHateCrime', (_req, res) => {
         ),
       );
       const summed = sumAllForGraph(flattenedResults, 'Referrals');
-      console.log(summed);
       res.status(200).json(summed);
     })
     .catch((err) => {
