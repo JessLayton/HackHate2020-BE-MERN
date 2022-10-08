@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const {
-  sortAndGroupByQuarter, formatForGraph, sumAllForGraph, stackQuarters,
+  sortAndGroupByQuarter, formatForGraph, sumAllForGraph,
 } = require('../utilities/graphingUtils');
 const Form = require('../models/formModel');
 
@@ -67,10 +67,10 @@ router.get('/reasons', (_req, res) => {
 });
 
 router.get('/referralsOverTime', (_req, res) => {
-  Form.find({}, ['quarter', 'year', 'reportingDetails'])
+  Form.find({}, ['quarter', 'year', 'referrals'])
     .then((result) => {
       const flattenedResults = result.map(
-        ({ quarter, year, reportingDetails: { total } }) => (
+        ({ quarter, year, referrals: { referrals: total } }) => (
           {
             quarter,
             year,
@@ -88,15 +88,17 @@ router.get('/referralsOverTime', (_req, res) => {
 });
 
 router.get('/allReferrals', (_req, res) => {
-  Form.find({}, ['reportingDetails'])
+  Form.find({}, ['referrals'])
     .then((result) => {
+      console.log(result);
       const flattenedResults = result.map(
         ({
-          reportingDetails: {
-            self, fromAuthorities, other: otherOrgs, total,
+          referrals: {
+            self, fromAuthorities, other: otherOrgs, referrals: total,
           },
         }) => (
           {
+            'Total number of referrals': total,
             'Number of people who came to you themselves (self-referred)': self,
             'Number of referrals via police / authorities': fromAuthorities,
             'Number of referrals from other organisations': otherOrgs,
@@ -104,51 +106,54 @@ router.get('/allReferrals', (_req, res) => {
           }
         ),
       );
-      const summed = sumAllForGraph(flattenedResults);
+      const summed = sumAllForGraph(flattenedResults, 'Total referrals');
       res.status(200).json(summed);
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).send(err);
     });
 });
 
-router.get('/allReferralsStacked', (_req, res) => {
-  Form.find({}, ['reportingDetails'])
-    .then((result) => {
-      const flattenedResults = result.map(
-        ({
-          quarter,
-          year,
-          reportingDetails: {
-            self, fromAuthorities, other: otherOrgs, total,
-          },
-        }) => (
-          {
-            'Number of people who came to you themselves (self-referred)': self,
-            'Number of referrals via police / authorities': fromAuthorities,
-            'Number of referrals from other organisations': otherOrgs,
-            Other: total - (self + fromAuthorities + otherOrgs),
-            quarter,
-            year,
-          }
-        ),
-      );
-      const stacked = stackQuarters(flattenedResults);
-      const formattedForGraph = formatForGraph(stacked, 'normal');
+// router.get('/allReferralsStacked', (_req, res) => {
+//   Form.find({}, ['referrals'])
+//     .then((result) => {
+//       console.log(result);
+//       const flattenedResults = result.map(
+//         ({
+//           quarter,
+//           year,
+//           referrals: {
+//             self, fromAuthorities, other: otherOrgs, referrals: total,
+//           },
+//         }) => (
+//           {
+//             'Total number of referrals': total,
+//             'Number of people who came to you themselves (self-referred)': self,
+//             'Number of referrals via police / authorities': fromAuthorities,
+//             'Number of referrals from other organisations': otherOrgs,
+//             Other: total - (self + fromAuthorities + otherOrgs),
+//             quarter,
+//             year,
+//           }
+//         ),
+//       );
+//       const stacked = stackQuarters(flattenedResults);
+//       const formattedForGraph = formatForGraph(stacked, 'normal');
 
-      res.status(200).json(formattedForGraph);
-    })
-    .catch((err) => {
-      res.status(500).send(err);
-    });
-});
+//       res.status(200).json(formattedForGraph);
+//     })
+//     .catch((err) => {
+//       res.status(500).send(err);
+//     });
+// });
 
 router.get('/intersectionalHateCrime', (_req, res) => {
-  Form.find({}, ['reportingDetails'])
+  Form.find({}, ['intersectional'])
     .then((result) => {
       const flattenedResults = result.map(
         ({
-          intersectionalCrimes: {
+          intersectional: {
             ableist, racial, religious, orientation, transgenderNonbinary, misogynistic, ageist,
           },
         }) => (
@@ -163,11 +168,43 @@ router.get('/intersectionalHateCrime', (_req, res) => {
           }
         ),
       );
-      const summed = sumAllForGraph(flattenedResults, 'Referrals');
+      const summed = sumAllForGraph(flattenedResults, 'Total cases');
       res.status(200).json(summed);
     })
     .catch((err) => {
       res.status(500).send(err);
+    });
+});
+
+router.get('/supportProvided', (_req, res) => {
+  Form.find({}, ['supportProvided', 'quarter', 'year'])
+    .then((result) => {
+      const flattenedResults = result.map(({
+        quarter, year, supportProvided: {
+          hateCrime,
+          emotional,
+          general,
+          signposted,
+          other,
+        },
+      }) => (
+        {
+          quarter,
+          year,
+          'Hate crime support': hateCrime,
+          'Emotional support': emotional,
+          'General support': general,
+          'Signposted to support elsewhere': signposted,
+          'Other support': other,
+        }
+      ));
+      const sortedAndGrouped = sortAndGroupByQuarter(flattenedResults);
+      const formattedForGraph = formatForGraph(sortedAndGrouped);
+      res.status(200).json(formattedForGraph);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+      console.error(err);
     });
 });
 
