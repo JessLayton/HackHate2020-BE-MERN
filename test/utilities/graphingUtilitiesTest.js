@@ -34,7 +34,7 @@ describe('sortAndGroupByQuarter function', () => {
     const grouped = sortAndGroupByQuarter(ungroupedYearAndQuarterData);
     assert.deepStrictEqual(grouped,
       [{
-        period: 'Q2 2021',
+        group: 'Q2 2021',
         values: {
           reported: 68,
           supported: 44,

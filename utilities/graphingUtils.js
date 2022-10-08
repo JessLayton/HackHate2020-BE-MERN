@@ -1,11 +1,11 @@
 const _ = require('lodash');
 
 const sumObjects = (obj1, obj2) => (
-  _.mergeWith({}, obj1, obj2, (objValue = 0, srcValue = 0) => {
-    if (_.isObject(objValue)) {
-      return sumObjects(objValue, srcValue);
+  _.mergeWith({}, obj1, obj2, (objValue, srcValue) => {
+    if (_.isObject(srcValue)) {
+      return sumObjects(objValue || {}, srcValue || {});
     }
-    return objValue + srcValue;
+    return (objValue || 0) + (srcValue || 0);
   })
 );
 
