@@ -19,6 +19,27 @@ const formSchema = new mongoose.Schema({
     type: Object,
     required: true,
   },
+  ongoingDetails: {
+    type: Object,
+    required: true,
+  },
+  typeOfTimeDataAvailable: { type: Array, required: true },
+  timeSpentNumerical: {
+    type: Number,
+    required: true,
+  },
+  timeSpentInfo: {
+    type: String,
+    required: true,
+  },
+  isWaitingList: {
+    type: String,
+    required: true,
+  },
+  waitingListCount: {
+    type: Number,
+    required: true,
+  },
   supportProvided: {
     type: Object,
     required: true,
@@ -40,10 +61,6 @@ const formSchema = new mongoose.Schema({
     required: true,
   },
   gender: {
-    type: Object,
-    required: true,
-  },
-  sex: {
     type: Object,
     required: true,
   },
@@ -72,13 +89,25 @@ const formSchema = new mongoose.Schema({
     required: true,
   },
   keyIssuesParagraph: {
-    type: String, maxLength: 300,
+    type: String,
+    validate: {
+      validator: (emotionalImpactCaseStudy) => emotionalImpactCaseStudy.split(' ').length <= 300,
+      message: () => 'Key issues paragraph must be 300 words or less',
+    },
   },
   emotionalImpactCaseStudy: {
-    type: String, maxLength: 300,
+    type: String,
+    validate: {
+      validator: (emotionalImpactCaseStudy) => emotionalImpactCaseStudy.split(' ').length <= 300,
+      message: () => 'Emotional impact case study must be 300 words or less',
+    },
   },
   outcomesCaseStudy: {
-    type: String, maxLength: 300,
+    type: String,
+    validate: {
+      validator: (outcomesCaseStudy) => outcomesCaseStudy.split(' ').length <= 300,
+      message: () => 'Outcomes case study must be 300 words or less',
+    },
   },
 });
 
