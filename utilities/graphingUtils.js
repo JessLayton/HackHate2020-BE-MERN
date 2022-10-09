@@ -70,29 +70,6 @@ const sumAllForGraph = (flattenedArray, name) => {
   };
 };
 
-const stackQuarters = (dataArray) => {
-  const groupedData = {};
-  dataArray.forEach(({
-    year, quarter, id: _id, ...rest
-  }) => {
-    const period = `Q${quarter} ${year}`;
-    Object.entries(rest).forEach(([key, value]) => {
-      if (!groupedData[key]) {
-        groupedData[key] = {};
-      }
-      if (!groupedData[key][period]) {
-        groupedData[key][period] = 0;
-      }
-      groupedData[key][period] += value;
-    });
-  });
-  const formattedData = Object.entries(groupedData).map(([key, values]) => ({
-    group: key,
-    values,
-  }));
-  return formattedData;
-};
-
 module.exports = {
-  sortAndGroupByQuarter, sumObjects, formatForGraph, sumAllForGraph, stackQuarters,
+  sortAndGroupByQuarter, sumObjects, formatForGraph, sumAllForGraph,
 };

@@ -115,39 +115,6 @@ router.get('/allReferrals', (_req, res) => {
     });
 });
 
-// router.get('/allReferralsStacked', (_req, res) => {
-//   Form.find({}, ['referrals'])
-//     .then((result) => {
-//       console.log(result);
-//       const flattenedResults = result.map(
-//         ({
-//           quarter,
-//           year,
-//           referrals: {
-//             self, fromAuthorities, other: otherOrgs, referrals: total,
-//           },
-//         }) => (
-//           {
-//             'Total number of referrals': total,
-//             'Number of people who came to you themselves (self-referred)': self,
-//             'Number of referrals via police / authorities': fromAuthorities,
-//             'Number of referrals from other organisations': otherOrgs,
-//             Other: total - (self + fromAuthorities + otherOrgs),
-//             quarter,
-//             year,
-//           }
-//         ),
-//       );
-//       const stacked = stackQuarters(flattenedResults);
-//       const formattedForGraph = formatForGraph(stacked, 'normal');
-
-//       res.status(200).json(formattedForGraph);
-//     })
-//     .catch((err) => {
-//       res.status(500).send(err);
-//     });
-// });
-
 router.get('/intersectionalHateCrime', (_req, res) => {
   Form.find({}, ['intersectional'])
     .then((result) => {
