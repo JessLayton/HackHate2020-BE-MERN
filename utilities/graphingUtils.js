@@ -1,11 +1,11 @@
 const _ = require('lodash');
 
 const sumObjects = (obj1, obj2) => (
-  _.mergeWith(obj1, obj2, (objValue = 0, srcValue = 0) => {
-    if (_.isObject(objValue)) {
-      return sumObjects(objValue, srcValue);
+  _.mergeWith({}, obj1, obj2, (objValue, srcValue) => {
+    if (_.isObject(srcValue)) {
+      return sumObjects(objValue || {}, srcValue || {});
     }
-    return objValue + srcValue;
+    return (objValue || 0) + (srcValue || 0);
   })
 );
 
@@ -22,18 +22,18 @@ const sortAndGroupByQuarter = (data) => {
       ), {},
     );
     return {
-      period: `Q${quarter} ${year}`,
+      group: `Q${quarter} ${year}`,
       values: summedTotals,
     };
   });
   return result;
 };
 
-const formatForGraph = (sortedAndGroupedData) => {
+const formatForGraph = (sortedAndGroupedData, stacking = undefined) => {
   const xAxis = [];
   const dataObject = {};
-  sortedAndGroupedData.forEach(({ period, values }, index) => {
-    xAxis.push(period);
+  sortedAndGroupedData.forEach(({ group, values }, index) => {
+    xAxis.push(group);
     Object.entries(values).forEach(([key, value]) => {
       if (!dataObject[key]) {
         dataObject[key] = Array(sortedAndGroupedData.length).fill(0);
@@ -45,6 +45,7 @@ const formatForGraph = (sortedAndGroupedData) => {
     {
       name: key,
       data: value,
+      stacking,
     }
   ));
   return {
@@ -53,4 +54,22 @@ const formatForGraph = (sortedAndGroupedData) => {
   };
 };
 
-module.exports = { sortAndGroupByQuarter, sumObjects, formatForGraph };
+const sumAllForGraph = (flattenedArray, name) => {
+  const summed = flattenedArray.reduce(sumObjects);
+  const xAxis = [];
+  const data = Object.entries(summed).map(([key, value]) => {
+    xAxis.push(key);
+    return ({
+      name: key,
+      y: value,
+    });
+  });
+  return {
+    xAxis,
+    dataArray: [{ data, name }],
+  };
+};
+
+module.exports = {
+  sortAndGroupByQuarter, sumObjects, formatForGraph, sumAllForGraph,
+};
