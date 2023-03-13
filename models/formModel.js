@@ -26,11 +26,9 @@ const formSchema = new mongoose.Schema({
   typeOfTimeDataAvailable: { type: Array, required: true },
   timeSpentNumerical: {
     type: Number,
-    required: true,
   },
   timeSpentInfo: {
     type: String,
-    required: true,
   },
   isWaitingList: {
     type: String,
@@ -52,6 +50,7 @@ const formSchema = new mongoose.Schema({
     type: Object,
     required: true,
   },
+  typeOfDemographicDataAvailable: { type: Array, required: true },
   age: {
     type: Object,
     required: true,
