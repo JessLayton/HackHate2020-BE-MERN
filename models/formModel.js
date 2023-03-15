@@ -108,6 +108,14 @@ const formSchema = new mongoose.Schema({
       message: () => 'Outcomes case study must be 300 words or less',
     },
   },
+  submissionDetails: {
+    isDraft: {
+      type: Boolean,
+    },
+    lastUpdated: {
+      type: String,
+    },
+  },
 });
 
 const Form = collatorDb.model('form', formSchema);

@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 const router = require('express').Router();
 const Form = require('../models/formModel');
 
@@ -32,6 +31,7 @@ router.post('/create', async (req, res) => {
     keyIssuesParagraph,
     emotionalImpactCaseStudy,
     outcomesCaseStudy,
+    submissionDetails,
   } = req.body;
 
   try {
@@ -64,6 +64,7 @@ router.post('/create', async (req, res) => {
       keyIssuesParagraph,
       emotionalImpactCaseStudy,
       outcomesCaseStudy,
+      submissionDetails,
     });
     await formData.save();
     return res.status(200).json({
@@ -71,12 +72,31 @@ router.post('/create', async (req, res) => {
         quarter,
         year,
         nameDdpo,
+        submissionDetails,
       },
     });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ msg: 'Unexpected error occurred' });
   }
+});
+
+// update to filter by user
+router.get('/submissions', (_req, res) => {
+  Form.find({}, ['nameDdpo', 'submissionDetails'])
+    .then((result) => res.status(200).json(result))
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+});
+
+router.get('/formData', (req, res) => {
+  const { id } = req.params;
+  Form.findById(id)
+    .then((result) => res.status(200).json(result))
+    .catch((err) => {
+      res.status(500).send(err);
+    });
 });
 
 module.exports = router;
